@@ -17,7 +17,54 @@
             src: url(fonts/BellMT.ttf);
         }
 
-       
+        @keyframes border-angle-rotate {
+            from {
+                --border-angle: 0deg;
+            }
+
+            to {
+                --border-angle: 360deg;
+            }
+        }
+
+
+        /* Wrapper pentru animația dublă cu pauză */
+        @keyframes blinkTwiceWithPause {
+
+            0%,
+            30%,
+            60%,
+            100% {
+                filter: brightness(0.5);
+            }
+
+            15%,
+            45% {
+                filter: brightness(1);
+            }
+
+        }
+
+        @keyframes slideUpFadeIn {
+            from {
+                opacity: 20%;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @property --border-angle {
+            syntax: "<angle>";
+            initial-value: 0deg;
+            inherits: false;
+        }
+
+
+
         body {
             background-image: url(visual_resoruces/menu_galley_bg.png);
             background-size: cover;
@@ -33,6 +80,20 @@
             margin: 4vh auto 0 auto;
             display: block;
             align-items: center;
+            filter: brightness(0.5);
+            
+        }
+
+        #logo.bright {
+            filter: brightness(1);
+        }
+
+        #logo.bright:hover {
+            animation: none;
+        }
+
+        #logo:hover {
+            animation: blinkTwiceWithPause 1.8s ease-in-out infinite;
         }
 
         #boxes {
@@ -41,6 +102,7 @@
             gap: 10px;
             margin-top: 10vh;
             padding: 0 1vw;
+            animation: slideUpFadeIn 0.6s ease-in-out;
         }
 
         .box {
@@ -54,8 +116,26 @@
             background-color: black;
             border: solid 10px white;
             text-align: center;
-            filter: brightness(0.7);
+            filter: brightness(0.5);
+            transition: 0.2s ease-out;
         }
+
+        .box:hover {
+            filter: brightness(1.2);
+            /* Animatie border gradient */
+            --border-angle: 0deg;
+            border: 20px solid transparent;
+            border-radius: 15px;
+            position: relative;
+            animation: border-angle-rotate 1.5s infinite linear;
+            background: linear-gradient(black, black) padding-box,
+                conic-gradient(from var(--border-angle),
+                    rgb(0, 0, 0) 25%,
+                    rgb(255, 255, 255) 50%,
+                    white) border-box;
+        }
+
+
 
 
         .box img {
@@ -68,25 +148,24 @@
             color: white;
             font-family: SprinturaDemo;
             display: inline-block;
-            font-size: clamp(40px,2vw,48px);
+            font-size: clamp(40px, 2vw, 48px);
             border-bottom: 4px solid white;
             margin: 3px auto;
             white-space: nowrap;
         }
 
-        .box .container{
+        .box .container {
             margin: 10px;
         }
-        
+
         .box p {
             margin-top: 0;
             color: white;
             font-family: BellMT;
             text-align: center;
-            font-size: clamp(25px,1.3vw,30px);
+            font-size: clamp(25px, 1.3vw, 30px);
 
         }
-
     </style>
 </head>
 
@@ -97,7 +176,8 @@
             <img src="visual_resoruces/SVG/x0_svg.svg" alt="">
             <h2>TIC-TAC-TOE</h2>
             <div class="container">
-                <p>Who gets three in a row? Think ahead, play smart, and claim victory in this classic game of strategy.</p>
+                <p>Who gets three in a row? Think ahead, play smart, and claim victory in this classic game of strategy.
+                </p>
             </div>
         </div>
         <div class="box">
@@ -109,12 +189,21 @@
         </div>
         <div class="box">
             <img src="visual_resoruces/SVG/simonSays_svg.svg" alt="">
-            <h2 >SIMON SAYS</h2>
+            <h2>SIMON SAYS</h2>
             <div class="container">
-                <p>Can you keep the rhythm? Watch it closely, repeat the pattern, and push your sharp memory to the limits.</p>
+                <p>Can you keep the rhythm? Watch it closely, repeat the pattern, and push your sharp memory to the
+                    limits.</p>
             </div>
         </div>
     </div>
+
+    <script>
+        const info = document.getElementById("logo");
+        logo.addEventListener('dblclick', () => {
+            logo.classList.toggle('bright');
+        });
+    </script>
+
 </body>
 
 </html>
