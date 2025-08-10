@@ -5,172 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GameBlitz90</title>
-
-    <style>
-        @font-face {
-            font-family: SprinturaDemo;
-            src: url(fonts/SprinturaDemo.otf);
-        }
-
-        @font-face {
-            font-family: BellMT;
-            src: url(fonts/BellMT.ttf);
-        }
-
-        @keyframes border-angle-rotate {
-            from {
-                --border-angle: 0deg;
-            }
-
-            to {
-                --border-angle: 360deg;
-            }
-        }
-
-
-        /* Wrapper pentru animația dublă cu pauză */
-        @keyframes blinkTwiceWithPause {
-
-            0%,
-            30%,
-            60%,
-            100% {
-                filter: brightness(0.5);
-            }
-
-            15%,
-            45% {
-                filter: brightness(1);
-            }
-
-        }
-
-        @keyframes slideUpFadeIn {
-            from {
-                opacity: 20%;
-                transform: translateY(30px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @property --border-angle {
-            syntax: "<angle>";
-            initial-value: 0deg;
-            inherits: false;
-        }
-
-
-
-        body {
-            background-image: url(visual_resoruces/menu_galley_bg.png);
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            height: 100vh;
-            margin: 0;
-        }
-
-        #logo {
-            width: clamp(600px, 50vw, 800px);
-            max-width: 800px;
-            margin: 4vh auto 0 auto;
-            display: block;
-            align-items: center;
-            filter: brightness(0.5);
-            
-        }
-
-        #logo.bright {
-            filter: brightness(1);
-        }
-
-        #logo.bright:hover {
-            animation: none;
-        }
-
-        #logo:hover {
-            animation: blinkTwiceWithPause 1.8s ease-in-out infinite;
-        }
-
-        #boxes {
-            display: flex;
-            justify-content: space-evenly;
-            gap: 10px;
-            margin-top: 10vh;
-            padding: 0 1vw;
-            animation: slideUpFadeIn 0.6s ease-in-out;
-        }
-
-        .box {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            aspect-ratio: 1/2;
-            width: 20vw;
-            max-height: 750px;
-            min-width: 360px;
-            background-color: black;
-            border: solid 10px white;
-            text-align: center;
-            filter: brightness(0.5);
-            transition: 0.2s ease-out;
-        }
-
-        .box:hover {
-            filter: brightness(1.2);
-            /* Animatie border gradient */
-            --border-angle: 0deg;
-            border: 20px solid transparent;
-            border-radius: 15px;
-            position: relative;
-            animation: border-angle-rotate 1.5s infinite linear;
-            background: linear-gradient(black, black) padding-box,
-                conic-gradient(from var(--border-angle),
-                    rgb(0, 0, 0) 25%,
-                    rgb(255, 255, 255) 50%,
-                    white) border-box;
-        }
-
-
-
-
-        .box img {
-            width: auto;
-            height: 60%;
-            margin: 3% 1%;
-        }
-
-        .box h2 {
-            color: white;
-            font-family: SprinturaDemo;
-            display: inline-block;
-            font-size: clamp(40px, 2vw, 48px);
-            border-bottom: 4px solid white;
-            margin: 3px auto;
-            white-space: nowrap;
-        }
-
-        .box .container {
-            margin: 10px;
-        }
-
-        .box p {
-            margin-top: 0;
-            color: white;
-            font-family: BellMT;
-            text-align: center;
-            font-size: clamp(25px, 1.3vw, 30px);
-
-        }
-    </style>
+    <link rel="stylesheet" href="gallery.css">
 </head>
 
 <body>
-    <img src="visual_resoruces/Logo.png" id="logo">
+    <header>
+        <img src="visual_resoruces/Logo.png" id="logo">
+        <img src="visual_resoruces/SVG/light_button.svg" id="brightness_toogle">
+    </header>
     <div id="boxes">
         <div class="box">
             <img src="visual_resoruces/SVG/x0_svg.svg" alt="">
@@ -198,9 +40,19 @@
     </div>
 
     <script>
-        const info = document.getElementById("logo");
+        const logo = document.getElementById("logo");
+        const light_button = document.getElementById("brightness_toogle");
+
         logo.addEventListener('dblclick', () => {
             logo.classList.toggle('bright');
+        });
+
+        light_button.addEventListener('click', () => {
+            document.querySelectorAll(".box").forEach(el => {
+                el.classList.toggle("bright");
+            });
+            logo.classList.toggle('bright');
+            light_button.classList.toggle("bright");
         });
     </script>
 
