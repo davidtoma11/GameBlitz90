@@ -7,6 +7,17 @@
     <title>GameBlitz90</title>
 
     <style>
+        @font-face {
+            font-family: SprinturaDemo;
+            src: url(fonts/SprinturaDemo.otf);
+        }
+
+        @font-face {
+            font-family: BellMT;
+            src: url(fonts/BellMT.ttf);
+        }
+
+       
         body {
             background-image: url(visual_resoruces/menu_galley_bg.png);
             background-size: cover;
@@ -15,11 +26,95 @@
             height: 100vh;
             margin: 0;
         }
+
+        #logo {
+            width: clamp(600px, 50vw, 800px);
+            max-width: 800px;
+            margin: 4vh auto 0 auto;
+            display: block;
+            align-items: center;
+        }
+
+        #boxes {
+            display: flex;
+            justify-content: space-evenly;
+            gap: 10px;
+            margin-top: 10vh;
+            padding: 0 1vw;
+        }
+
+        .box {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            aspect-ratio: 1/2;
+            width: 20vw;
+            max-height: 750px;
+            min-width: 360px;
+            background-color: black;
+            border: solid 10px white;
+            text-align: center;
+            filter: brightness(0.7);
+        }
+
+
+        .box img {
+            width: auto;
+            height: 60%;
+            margin: 3% 1%;
+        }
+
+        .box h2 {
+            color: white;
+            font-family: SprinturaDemo;
+            display: inline-block;
+            font-size: clamp(40px,2vw,48px);
+            border-bottom: 4px solid white;
+            margin: 3px auto;
+            white-space: nowrap;
+        }
+
+        .box .container{
+            margin: 10px;
+        }
+        
+        .box p {
+            margin-top: 0;
+            color: white;
+            font-family: BellMT;
+            text-align: center;
+            font-size: clamp(25px,1.3vw,30px);
+
+        }
+
     </style>
 </head>
 
 <body>
-
+    <img src="visual_resoruces/Logo.png" id="logo">
+    <div id="boxes">
+        <div class="box">
+            <img src="visual_resoruces/SVG/x0_svg.svg" alt="">
+            <h2>TIC-TAC-TOE</h2>
+            <div class="container">
+                <p>Who gets three in a row? Think ahead, play smart, and claim victory in this classic game of strategy.</p>
+            </div>
+        </div>
+        <div class="box">
+            <img src="visual_resoruces/SVG/4_svg.svg" alt="">
+            <h2>4 IN A LINE</h2>
+            <div class="container">
+                <p>Line them up to win! Drop your discs, plan your moves and outsmart your opponent in this duel.</p>
+            </div>
+        </div>
+        <div class="box">
+            <img src="visual_resoruces/SVG/simonSays_svg.svg" alt="">
+            <h2 >SIMON SAYS</h2>
+            <div class="container">
+                <p>Can you keep the rhythm? Watch it closely, repeat the pattern, and push your sharp memory to the limits.</p>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
