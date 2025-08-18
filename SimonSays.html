@@ -122,6 +122,10 @@
             filter: brightness(1.5);
         }
 
+        .active {
+            filter: brightness(1.8);
+        }
+
         #red {
             border-bottom-right-radius: 40%;
             background:radial-gradient(circle,#CA5051 0%, #FE0D0D 100%);
@@ -167,15 +171,15 @@
     <header>
         <img src="visual_resoruces/SVG/ss_center_title_logo.svg" alt="">
         <h1>Simon Says</h1>
-        <h2>Highscore: 0</h2>
+        <h2 id = "highscore">Highscore: 0</h2>
     </header>
 
     <div id="main">
-        <div id="red" class="square" x></div>
-        <div id="green" class="square">x</div>
-        <div id="blue" class="square">x</div>
-        <div id="yellow" class="square">x</div>
-        <div id="score">100</div>
+        <div id="red" class="square"></div>
+        <div id="green" class="square"></div>
+        <div id="blue" class="square"></div>
+        <div id="yellow" class="square"></div>
+        <div id="score">0</div>
     </div>
 
 

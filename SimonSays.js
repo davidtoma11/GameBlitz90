@@ -23,3 +23,86 @@ function generateLines(container, count, align) {
 
 generateLines(left, 36, "flex-start");
 generateLines(right, 36, "flex-end");
+
+
+// main squares
+const pads = {
+    red: document.getElementById("red"),
+    green: document.getElementById("green"),
+    blue: document.getElementById("blue"),
+    yellow: document.getElementById("yellow")
+}
+
+let sequence = [];
+let mySequence = [];
+let score = 0;
+let highscore = 0;
+const scoreEL = document.getElementById("score")
+const highscoreEL = document.getElementById("highscore");
+const game_colors = ["red", "green", "blue", "yellow"];
+
+
+function flashPad(color){
+    const square = pads[color];
+    square.classList.toggle("active");
+    setTimeout(() => {square.classList.toggle("active");},200)
+}
+
+function startGame(){
+    score = 0;
+    sequence = [];
+    nextRound();
+}
+
+function nextRound(){
+    mySequence = [];
+    scoreEL.innerHTML = score;
+
+    // choose a random color + put in the sequence
+    const randomColor = game_colors[Math.floor(Math.random() * game_colors.length)];
+    sequence.push(randomColor);
+
+    showSequence();
+}
+
+function showSequence(){
+    let i = 0;
+    for(let i = 0; i < sequence.length; i++){
+        setTimeout(() => {flashPad(sequence[i])},i * 500);
+    }
+}
+
+// click on a pad
+Object.keys(pads).forEach(color => {
+  pads[color].addEventListener("click", () => handleClick(color));
+});
+
+
+function handleClick(color){
+    
+    mySequence.push(color);
+
+    const step = mySequence.length - 1;
+
+    if(mySequence[step] !== sequence[step]){
+        gameOver();
+        return;
+    }
+
+    if(mySequence.length === sequence.length){
+        score++;
+        setTimeout(nextRound, 800);
+    }
+}
+
+function gameOver(){
+    if (score > highscore) {
+        highscore = score;
+        highscoreEL.innerHTML = "Highscore: " + highscore;
+        scoreEL.innerHTML = "X";
+    }
+
+    setTimeout(startGame, 1000);
+}
+
+startGame();
