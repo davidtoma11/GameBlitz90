@@ -46,11 +46,28 @@
     }
 }
 
+
+@keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
 @property --border-angle {
     syntax: "<angle>";
     initial-value: 0deg;
     inherits: false;
 }
+
+
+#particleCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    pointer-events: none; /* să nu blocheze clickurile */
+}
+
 
 header{
     display: flex;
@@ -73,7 +90,7 @@ header{
 }
 
 body {
-    background-image: url(visual_resoruces/menu_galley_bg.png);
+    background-image: url('visual_resoruces/menu_galley_bg.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -128,6 +145,16 @@ body {
     text-align: center;
     filter: brightness(0.5);
     transition: 0.2s ease-out;
+}
+
+.box a {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    color: inherit;
+    text-decoration: none;
 }
 
 .box.bright {
