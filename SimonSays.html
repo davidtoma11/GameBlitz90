@@ -62,7 +62,7 @@
             font-size: 30px;
             border: 1px solid white;
             display: inline-block;
-            padding: 0.5vw 1vw;
+            padding: 0.5vh 1vw;
         }
 
         .lines-container {
@@ -154,24 +154,8 @@
             text-shadow: 2px 2px 5px black;
         }
 
-        .buttons{
-            position: absolute;
-            bottom: 3vh;
-            border: solid orange;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap:5vw
-
-        }
-
-        .button {
-            color: wheat;
-            width: 350px;
-            height: 100px;
-        }
-
     </style>
+    <link rel="stylesheet" href="buttons.css">
 </head>
 
 <body>
@@ -192,6 +176,13 @@
         <div id="blue" class="square">x</div>
         <div id="yellow" class="square">x</div>
         <div id="score">100</div>
+    </div>
+
+
+    <div class ="buttons">
+        <a href="gallery.html" class="button menu"></a>
+        <div class="button info"></div>
+        <div class="button reset"></div>
     </div>
 
     <script src="SimonSays.js"></script>
