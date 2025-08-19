@@ -24,6 +24,22 @@ function generateLines(container, count, align) {
 generateLines(left, 36, "flex-start");
 generateLines(right, 36, "flex-end");
 
+// light transition effect
+const lines = document.querySelectorAll(".line");
+lines.forEach(line => {
+    line.addEventListener('click', () => {
+        line.classList.toggle('clicked');
+
+        line.style.filter = 'opacity(0.1)';
+
+        setTimeout(() => {
+            line.classList.toggle('clicked');
+            line.style.filter = ''; 
+        }, 5000); 
+    });
+
+});
+
 
 // main squares
 const pads = {
@@ -42,19 +58,19 @@ const highscoreEL = document.getElementById("highscore");
 const game_colors = ["red", "green", "blue", "yellow"];
 
 
-function flashPad(color){
+function flashPad(color) {
     const square = pads[color];
     square.classList.toggle("active");
-    setTimeout(() => {square.classList.toggle("active");},200)
+    setTimeout(() => { square.classList.toggle("active"); }, 200)
 }
 
-function startGame(){
+function startGame() {
     score = 0;
     sequence = [];
     nextRound();
 }
 
-function nextRound(){
+function nextRound() {
     mySequence = [];
     scoreEL.innerHTML = score;
 
@@ -65,37 +81,37 @@ function nextRound(){
     showSequence();
 }
 
-function showSequence(){
+function showSequence() {
     let i = 0;
-    for(let i = 0; i < sequence.length; i++){
-        setTimeout(() => {flashPad(sequence[i])},i * 500);
+    for (let i = 0; i < sequence.length; i++) {
+        setTimeout(() => { flashPad(sequence[i]) }, i * 500);
     }
 }
 
 // click on a pad
 Object.keys(pads).forEach(color => {
-  pads[color].addEventListener("click", () => handleClick(color));
+    pads[color].addEventListener("click", () => handleClick(color));
 });
 
 
-function handleClick(color){
-    
+function handleClick(color) {
+
     mySequence.push(color);
 
     const step = mySequence.length - 1;
 
-    if(mySequence[step] !== sequence[step]){
+    if (mySequence[step] !== sequence[step]) {
         gameOver();
         return;
     }
 
-    if(mySequence.length === sequence.length){
+    if (mySequence.length === sequence.length) {
         score++;
         setTimeout(nextRound, 800);
     }
 }
 
-function gameOver(){
+function gameOver() {
     if (score > highscore) {
         highscore = score;
         highscoreEL.innerHTML = "Highscore: " + highscore;
@@ -106,3 +122,7 @@ function gameOver(){
 }
 
 startGame();
+
+// reset button
+const reset_button = document.getElementsByClassName("reset")[0];
+reset_button.addEventListener("click", () => { gameOver(); highscore = 0; highscoreEL.innerHTML = "Highscore: " + highscore; })

@@ -88,10 +88,16 @@
             height: 8px;
             margin-bottom: 25px;
             filter: opacity(0.1);
+            transition: none;
         }
 
         .line:hover {
             filter: opacity(1);
+        }
+
+        .line.clicked {
+            filter: opacity(1);
+            transition: filter 5s linear;
         }
 
         .lines-left .line {
@@ -118,7 +124,7 @@
             transition: 0.05s ease-in;
         }
 
-        .square:hover{
+        .square.active{
             filter: brightness(1.5);
         }
 
