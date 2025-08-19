@@ -34,8 +34,8 @@ lines.forEach(line => {
 
         setTimeout(() => {
             line.classList.toggle('clicked');
-            line.style.filter = ''; 
-        }, 5000); 
+            line.style.filter = '';
+        }, 5000);
     });
 
 });
@@ -56,6 +56,7 @@ let highscore = 0;
 const scoreEL = document.getElementById("score")
 const highscoreEL = document.getElementById("highscore");
 const game_colors = ["red", "green", "blue", "yellow"];
+let canHover = true; 
 
 
 function flashPad(color) {
@@ -64,29 +65,35 @@ function flashPad(color) {
     setTimeout(() => { square.classList.toggle("active"); }, 200)
 }
 
+// point 0 of game
 function startGame() {
     score = 0;
     sequence = [];
     nextRound();
 }
 
+
 function nextRound() {
     mySequence = [];
     scoreEL.innerHTML = score;
-
-    // choose a random color + put in the sequence
     const randomColor = game_colors[Math.floor(Math.random() * game_colors.length)];
     sequence.push(randomColor);
-
     showSequence();
 }
 
 function showSequence() {
-    let i = 0;
+    // disable hover
+    hover_toogle(false); 
     for (let i = 0; i < sequence.length; i++) {
-        setTimeout(() => { flashPad(sequence[i]) }, i * 500);
+        setTimeout(() => {
+            flashPad(sequence[i]);
+            if (i === sequence.length - 1) {
+                setTimeout(() => hover_toogle(true), 800); // enable hover
+            }
+        }, i * 500);
     }
 }
+
 
 // click on a pad
 Object.keys(pads).forEach(color => {
@@ -95,31 +102,48 @@ Object.keys(pads).forEach(color => {
 
 
 function handleClick(color) {
-
+    // player pov
     mySequence.push(color);
-
     const step = mySequence.length - 1;
 
+    // for mistake
     if (mySequence[step] !== sequence[step]) {
         gameOver();
         return;
     }
 
+    // for complete sequence => next
     if (mySequence.length === sequence.length) {
         score++;
-        setTimeout(nextRound, 800);
+        setTimeout(nextRound, 1500);
     }
 }
 
 function gameOver() {
+    // update highscore
     if (score > highscore) {
         highscore = score;
         highscoreEL.innerHTML = "Highscore: " + highscore;
         scoreEL.innerHTML = "X";
     }
 
+    // new game
     setTimeout(startGame, 1000);
 }
+
+// visual bug
+function hover_toogle(enable) {
+    canHover = enable;
+    for (let color in pads) {
+        if (enable) {
+            pads[color].classList.add("hoverable");
+        } else {
+            pads[color].classList.remove("hoverable");
+        }
+    }
+}
+
+
 
 startGame();
 
