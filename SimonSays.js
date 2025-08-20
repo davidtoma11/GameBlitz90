@@ -40,6 +40,17 @@ lines.forEach(line => {
 
 });
 
+// variables
+let sequence = [];
+let mySequence = [];
+let score = 0;
+let highscore = 0;
+const scoreEL = document.getElementById("score")
+const highscoreEL = document.getElementById("highscore");
+const game_colors = ["red", "green", "blue", "yellow"];
+let canHover = true; 
+const audioCtx = new (window.AudioContext || window.webkitAudioContext)(); // for audio
+
 
 // main squares
 const pads = {
@@ -49,20 +60,38 @@ const pads = {
     yellow: document.getElementById("yellow")
 }
 
-let sequence = [];
-let mySequence = [];
-let score = 0;
-let highscore = 0;
-const scoreEL = document.getElementById("score")
-const highscoreEL = document.getElementById("highscore");
-const game_colors = ["red", "green", "blue", "yellow"];
-let canHover = true; 
+// a sound (piano note) for every pad
+const notes = {
+    red: 261.63,   // C4
+    green: 329.63, // E4
+    blue: 392.00,  // G4
+    yellow: 440.00 // A4
+};
 
 
 function flashPad(color) {
     const square = pads[color];
     square.classList.toggle("active");
-    setTimeout(() => { square.classList.toggle("active"); }, 200)
+    playNote(notes[color]);
+    setTimeout(() => { square.classList.toggle("active"); }, 200);
+}
+
+
+function playNote(freq) {
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    const duration = 0.3;
+
+    osc.type = "square";
+    osc.frequency.value = freq;
+
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+
+    gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+
+    osc.start();
+    osc.stop(audioCtx.currentTime + duration);
 }
 
 // point 0 of game
@@ -100,10 +129,10 @@ Object.keys(pads).forEach(color => {
     pads[color].addEventListener("click", () => handleClick(color));
 });
 
-
+// player pov
 function handleClick(color) {
-    // player pov
-    mySequence.push(color);
+    playNote(notes[color]); // play sound
+    mySequence.push(color); // to compare our sequence to "the" sequence
     const step = mySequence.length - 1;
 
     // for mistake
