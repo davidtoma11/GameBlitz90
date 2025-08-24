@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="buttons.css">
+    <style>
+        body {
+            background-color: black;
+            margin: 0;
+            height: 100vh;
+            position: relative;
+        }
+
+        :root {
+            --line: 15px;
+            --size: 250px;
+        }
+
+
+        .board {
+            display: grid;
+            grid-template-columns: repeat(3, var(--size));
+            grid-template-rows: repeat(3, var(--size));
+            gap: 0;
+            background: transparent;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .cell {
+            background: transparent;
+            border: 0;
+            position: relative;
+        }
+
+        /* left border for 2nd and 3rd column */
+        .cell:not(:nth-child(3n+1))::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            top: 0;
+            width: var(--line);
+            background: linear-gradient(180deg,rgba(255, 255, 255, 1) 0%, rgba(188, 190, 192, 1) 50%, rgba(255, 255, 255, 1) 100%);
+            border: solid white 3px;
+        }
+
+        /* top border for 2nd and 3rd row */
+        .cell:nth-child(n+4)::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            height: var(--line);
+            background: linear-gradient(90deg,rgba(255, 255, 255, 1) 0%, rgba(188, 190, 192, 1) 50%, rgba(255, 255, 255, 1) 100%);
+            border: solid white 3px;
+        }
+
+        .cell:hover{
+            background: url(visual_resoruces/SVG/0.svg);
+        }
+    </style>
+</head>
+
+<body>
+    <p>Tic-Tac-Toe</p>
+
+    <div class="board">
+        <button class="cell"></button>
+        <button class="cell"></button>
+        <button class="cell"></button>
+        <button class="cell"></button>
+        <button class="cell"></button>
+        <button class="cell"></button>
+        <button class="cell"></button>
+        <button class="cell"></button>
+        <button class="cell"></button>
+    </div>
+
+
+    <div class="buttons">
+        <a href="gallery.html" class="button menu"></a>
+        <div class="button info"></div>
+        <div class="button reset"></div>
+    </div>
+</body>
+
+</html>
