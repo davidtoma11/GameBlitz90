@@ -1,0 +1,131 @@
+ @font-face {
+            font-family: SprinturaDemo;
+            src: url(fonts/SprinturaDemo.otf);
+        }
+
+        @font-face {
+            font-family: BellMT;
+            src: url(fonts/BellMT.ttf);
+        }
+
+        body {
+            background-color: black;
+            margin: 0;
+            height: 100vh;
+            position: relative;
+        }
+
+        :root {
+            --line: 15px;
+            --size: 240px;
+        }
+
+
+        header {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            z-index: 1;
+            padding-top: 1vh;
+        }
+
+        #ds {
+            justify-content: center;
+            gap: 5vw;
+        }
+
+        .score {
+            display: flex;
+            align-items: center;
+            gap: 1vw;
+        }
+
+        .score img {
+            height: 4vh;
+        }
+
+        h1,
+        p {
+            font-family: SprinturaDemo;
+            color: white;
+            margin: 0;
+            white-space: nowrap;
+            font-size: 70px;
+        }
+
+        p {
+            font-size: 50px;
+        }
+
+
+        .board {
+            display: grid;
+            grid-template-columns: repeat(3, var(--size));
+            grid-template-rows: repeat(3, var(--size));
+            gap: 0;
+            background: transparent;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding-top: 3vh;
+        }
+
+        .cell {
+            background: transparent;
+            border: 0;
+            position: relative;
+        }
+
+        /* left border for 2nd and 3rd column */
+        .cell:not(:nth-child(3n+1))::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            top: 0;
+            width: var(--line);
+            background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(188, 190, 192, 1) 50%, rgba(255, 255, 255, 1) 100%);
+            border: solid white 3px;
+        }
+
+        /* top border for 2nd and 3rd row */
+        .cell:nth-child(n+4)::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            height: var(--line);
+            background: linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, rgba(188, 190, 192, 1) 50%, rgba(255, 255, 255, 1) 100%);
+            border: solid white 3px;
+        }
+
+        .cell:hover{
+            background-color: rgb(7, 7, 7);
+        }
+
+        .cell.active.X {
+            background: url(visual_resoruces/SVG/X.svg) no-repeat center center;
+            background-size: 80%;
+        }
+
+        .cell.active.O {
+            background: url(visual_resoruces/SVG/0.svg) no-repeat center center;
+            background-size: 80%;
+        }
+
+        /* centered the symbols (the lines cover part of the box and give the effect of being off-centered) */
+        .cell:nth-child(3n+1).active {
+            background-position: calc(50%) calc(50% + 7px);
+        }
+
+        .cell:nth-child(3n+2).active {
+            background-position: calc(50% + 7px) calc(50% + 7px);
+        }
+
+        .cell:nth-child(3n+3).active {
+            background-position: calc(50% + 14px) calc(50% + 7px);
+        }
