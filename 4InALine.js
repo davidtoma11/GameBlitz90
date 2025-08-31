@@ -10,6 +10,9 @@ let blue_points = 0;
 const orange_points_EL = document.getElementById("orange_points");
 const blue_points_EL = document.getElementById("blue_points");
 
+const orangeImg = document.getElementById("orange_img");
+const blueImg = document.getElementById("blue_img");
+
 const boardContainer = document.querySelector(".board");
 const reset_button = document.querySelector(".reset");
 
@@ -26,8 +29,30 @@ function createBoard() {
             cell.dataset.row = r;
             cell.dataset.col = c;
 
+            // hover: color empty cells in the same column
+            cell.addEventListener("mouseenter", () => {
+                for (let rr = 0; rr < rows; rr++) {
+                    if (!board[rr][c]) {
+                        document.querySelector(`.cell[data-row="${rr}"][data-col="${c}"]`).classList.add("available");
+                    }
+                }
+            });
+
+            // remove hover effect when mouse leaves
+            cell.addEventListener("mouseleave", () => {
+                for (let rr = 0; rr < rows; rr++) {
+                    document.querySelector(`.cell[data-row="${rr}"][data-col="${c}"]`).classList.remove("available");
+                }
+            });
+
             // click on a collumn -> fill the empty slot (the lowest)
-            cell.addEventListener("click", () => handleMove(c));
+            cell.addEventListener("click", () => { 
+                handleMove(c); 
+                for (let rr = 0; rr < rows; rr++) {
+                    document.querySelector(`.cell[data-row="${rr}"][data-col="${c}"]`).classList.remove("available");
+                }
+            });
+
             boardContainer.appendChild(cell);
         }
     }
@@ -46,8 +71,17 @@ function handleMove(col) {
             );
             cell.classList.add(currentPlayer);
 
+            // winning case
+            const winningCells = checkWinner(r, col);
+            if (winningCells) {
+                // highlight the winning line
+                winningCells.forEach(([wr, wc]) => {
+                    const cell = document.querySelector(`.cell[data-row="${wr}"][data-col="${wc}"]`);
+                    cell.classList.remove(currentPlayer);
+                    cell.classList.add("red");
+                });
 
-            if (checkWinner(r, col)) {
+                // update score
                 if (currentPlayer === "orange") {
                     orange_points++;
                     orange_points_EL.textContent = orange_points;
@@ -55,18 +89,24 @@ function handleMove(col) {
                     blue_points++;
                     blue_points_EL.textContent = blue_points;
                 }
-                setTimeout(() => resetBoard(), 2000);
+
+                // next round
+                setTimeout(() => {
+                    resetBoard();
+                }, 1500);
+
                 return;
             }
 
             // check for draw
             if (board.flat().every(cell => cell !== null)) {
-                setTimeout(() => resetBoard(), 2000);
+                setTimeout(() => resetBoard(), 1000);
                 return;
             }
 
             // change player
             currentPlayer = currentPlayer === "orange" ? "blue" : "orange";
+            updateTurnIndicator();
             return;
         }
     }
@@ -83,11 +123,16 @@ function checkWinner(row, col) {
 
     for (let [dr, dc] of directions) {
         let count = 1;
+        const cells = [[row, col]]; // array of consecutive cells
 
         // one way
         let rr = row + dr, cc = col + dc;
         while (rr >= 0 && rr < rows && cc >= 0 && cc < cols && board[rr][cc] === player) {
+            // increase the number
             count++;
+            cells.push([rr, cc])
+
+            // continue the path in that way
             rr += dr;
             cc += dc;
         }
@@ -100,9 +145,9 @@ function checkWinner(row, col) {
             cc -= dc;
         }
 
-        if (count >= 4) return true;
+        if (count >= 4) return cells;
     }
-    return false;
+    return null;
 }
 
 
@@ -110,7 +155,22 @@ function checkWinner(row, col) {
 function resetBoard() {
     createBoard();
     currentPlayer = Math.random() < 0.5 ? "orange" : "blue";
+    updateTurnIndicator();
 }
+
+// to see whose turn it is
+function updateTurnIndicator() {
+    orangeImg.classList.remove("active-turn");
+    blueImg.classList.remove("active-turn");
+
+    // update it
+    if (currentPlayer === "orange") {
+        orangeImg.classList.add("active-turn");
+    } else {
+        blueImg.classList.add("active-turn");
+    }
+}
+
 
 // reset button
 reset_button.addEventListener("click", () => {
