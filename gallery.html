@@ -62,16 +62,6 @@
             logo.classList.toggle('bright');
             light_button.classList.toggle("bright");
         });
-        
-        window.addEventListener("load", () => {
-            if (localStorage.getItem("playMenuSound") === "true") {
-                playSound("menu");
-                localStorage.removeItem("playMenuSound");
-            }
-        });
-
-
-
     </script>
     <script src="sounds.js"></script>
 

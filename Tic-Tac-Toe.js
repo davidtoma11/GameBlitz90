@@ -93,49 +93,59 @@ function drawWinningLine(combo) {
     const endRect = endCell.getBoundingClientRect();
 
     let startX, startY, endX, endY;
+    let transformOrigin = "left center";
 
     // horizontal
     if (startRect.top === endRect.top) {
         startX = startRect.left;
         startY = startRect.top + startRect.height / 2;
         endX = endRect.right;
-        endY = endRect.top + endRect.height / 2;
+        endY = startY;
     }
     // vertical
     else if (startRect.left === endRect.left) {
         startX = startRect.left + startRect.width / 2;
         startY = startRect.top;
-        endX = endRect.left + endRect.width / 2;
+        endX = startX;
         endY = endRect.bottom;
     }
-    // secondary diagonal
-    else if (endRect.left > startRect.left && endRect.top > startRect.top) {
-        startX = startRect.left;
-        startY = startRect.top;
-        endX = endRect.right;
-        endY = endRect.bottom;
-    }
-    // main diagonal
+    // diagonals
     else {
-        startX = startRect.left;
-        startY = startRect.bottom;
-        endX = endRect.right;
-        endY = endRect.top;
+        // ↗
+        if (combo[0] === 0) { 
+            startX = startRect.left;
+            startY = startRect.top;
+            endX = endRect.right;
+            endY = endRect.bottom;
+        } 
+        // ↘
+        else { 
+            startX = startRect.right;
+            startY = startRect.top;
+            endX = endRect.left;
+            endY = endRect.bottom;
+        }
+
+        transformOrigin = "top left";
     }
 
     const length = Math.sqrt(Math.pow(endX - startX, 2) + Math.pow(endY - startY, 2));
     const angle = Math.atan2(endY - startY, endX - startX) * 180 / Math.PI;
 
-    winningLine.style.width = length + "px";
+    winningLine.style.transition = "none";
+    winningLine.style.width = "0px";
     winningLine.style.top = startY + "px";
     winningLine.style.left = startX + "px";
-
-    winningLine.style.transformOrigin = "left center";
+    winningLine.style.transformOrigin = transformOrigin;
     winningLine.style.transform = `rotate(${angle}deg)`;
+
+    void winningLine.offsetWidth;
+
+    winningLine.style.transition = "width 0.3s ease";
+    winningLine.style.width = length + "px";
 
     winningLine.classList.add("visible");
 }
-
 
 
 // to identify who is first

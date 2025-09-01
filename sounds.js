@@ -23,6 +23,5 @@ function playSound(sound) {
 // menu button
 const menu = document.getElementsByClassName("menu")[0];
 menu.addEventListener("click", () => {
-    localStorage.setItem("playMenuSound", "true");
     window.location.href = "gallery.html";
 });
