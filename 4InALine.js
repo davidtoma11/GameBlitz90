@@ -56,32 +56,55 @@ function createBoard() {
             boardContainer.appendChild(cell);
         }
     }
+
+    updateTurnIndicator();
 }
 
 
 function handleMove(col) {
-    // searching for an empty slot (bottom up)
+    let targetRow = -1;
+
+    // find the first empty row
     for (let r = rows - 1; r >= 0; r--) {
         if (!board[r][col]) {
+            targetRow = r;
+            break;
+        }
+    }
 
-            // update the board
-            board[r][col] = currentPlayer;
-            const cell = document.querySelector(
-                `.cell[data-row="${r}"][data-col="${col}"]`
-            );
-            cell.classList.add(currentPlayer);
+    if (targetRow === -1) return; // coloană plină
 
-            // winning case
-            const winningCells = checkWinner(r, col);
+    let currentRow = 0;
+
+
+    // falling animation (recursive)
+    function animateDrop() {
+        // erase the previous cell
+        if (currentRow > 0) {
+            const prevCell = document.querySelector(`.cell[data-row="${currentRow - 1}"][data-col="${col}"]`);
+            prevCell.classList.remove(currentPlayer);
+        }
+
+        // fill the current cell
+        const cell = document.querySelector(`.cell[data-row="${currentRow}"][data-col="${col}"]`);
+        cell.classList.add(currentPlayer);
+
+        if (currentRow < targetRow) {
+            currentRow++;
+            setTimeout(animateDrop, 30); 
+        } else {
+            // final point
+            board[targetRow][col] = currentPlayer;
+
+            // check for a winning scenario
+            const winningCells = checkWinner(targetRow, col);
             if (winningCells) {
-                // highlight the winning line
                 winningCells.forEach(([wr, wc]) => {
-                    const cell = document.querySelector(`.cell[data-row="${wr}"][data-col="${wc}"]`);
-                    cell.classList.remove(currentPlayer);
-                    cell.classList.add("red");
+                    const winCell = document.querySelector(`.cell[data-row="${wr}"][data-col="${wc}"]`);
+                    winCell.classList.remove(currentPlayer);
+                    winCell.classList.add("red");
                 });
 
-                // update score
                 if (currentPlayer === "orange") {
                     orange_points++;
                     orange_points_EL.textContent = orange_points;
@@ -90,15 +113,11 @@ function handleMove(col) {
                     blue_points_EL.textContent = blue_points;
                 }
 
-                // next round
-                setTimeout(() => {
-                    resetBoard();
-                }, 1500);
-
+                setTimeout(() => resetBoard(), 1500);
                 return;
             }
 
-            // check for draw
+            // draw scenarios
             if (board.flat().every(cell => cell !== null)) {
                 setTimeout(() => resetBoard(), 1000);
                 return;
@@ -107,9 +126,10 @@ function handleMove(col) {
             // change player
             currentPlayer = currentPlayer === "orange" ? "blue" : "orange";
             updateTurnIndicator();
-            return;
         }
     }
+
+    animateDrop();
 }
 
 function checkWinner(row, col) {
@@ -155,7 +175,6 @@ function checkWinner(row, col) {
 function resetBoard() {
     createBoard();
     currentPlayer = Math.random() < 0.5 ? "orange" : "blue";
-    updateTurnIndicator();
 }
 
 // to see whose turn it is
