@@ -84,32 +84,58 @@ reset_button.addEventListener("click", () => { playSound("reset"); resetTable();
 
 
 function drawWinningLine(combo) {
-    // from the first cell to the last 
     playSound("win_line");
+
     const startCell = cells[combo[0]];
-    const endCell = cells[combo[2]];
+    const endCell = cells[combo[combo.length - 1]];
 
     const startRect = startCell.getBoundingClientRect();
     const endRect = endCell.getBoundingClientRect();
 
-    // centered
-    const startX = startRect.left + startRect.width / 2;
-    const startY = startRect.top + startRect.height / 2;
-    const endX = endRect.left + endRect.width / 2;
-    const endY = endRect.top + endRect.height / 2;
+    let startX, startY, endX, endY;
+
+    // horizontal
+    if (startRect.top === endRect.top) {
+        startX = startRect.left;
+        startY = startRect.top + startRect.height / 2;
+        endX = endRect.right;
+        endY = endRect.top + endRect.height / 2;
+    }
+    // vertical
+    else if (startRect.left === endRect.left) {
+        startX = startRect.left + startRect.width / 2;
+        startY = startRect.top;
+        endX = endRect.left + endRect.width / 2;
+        endY = endRect.bottom;
+    }
+    // secondary diagonal
+    else if (endRect.left > startRect.left && endRect.top > startRect.top) {
+        startX = startRect.left;
+        startY = startRect.top;
+        endX = endRect.right;
+        endY = endRect.bottom;
+    }
+    // main diagonal
+    else {
+        startX = startRect.left;
+        startY = startRect.bottom;
+        endX = endRect.right;
+        endY = endRect.top;
+    }
 
     const length = Math.sqrt(Math.pow(endX - startX, 2) + Math.pow(endY - startY, 2));
     const angle = Math.atan2(endY - startY, endX - startX) * 180 / Math.PI;
 
-    winningLine.style.width = length + 'px';
-    winningLine.style.top = startY + 'px';
-    winningLine.style.left = startX + 'px';
+    winningLine.style.width = length + "px";
+    winningLine.style.top = startY + "px";
+    winningLine.style.left = startX + "px";
 
-    winningLine.style.transformOrigin = 'left center'; 
+    winningLine.style.transformOrigin = "left center";
     winningLine.style.transform = `rotate(${angle}deg)`;
 
-    winningLine.classList.add('visible');
+    winningLine.classList.add("visible");
 }
+
 
 
 // to identify who is first
