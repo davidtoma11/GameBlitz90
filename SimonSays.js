@@ -151,12 +151,14 @@ function handleClick(color) {
 function gameOver() {
     // update highscore
     if (score > highscore) {
+        playSound("highscore");
         highscore = score;
         highscoreEL.innerHTML = "Highscore: " + highscore;
-        scoreEL.innerHTML = "X";
     }
+    else { if(score > 0) {playSound("gameOver");} }
 
     // new game
+    scoreEL.innerHTML = "X";
     setTimeout(startGame, 1000);
 }
 
@@ -176,6 +178,6 @@ function hover_toogle(enable) {
 
 startGame();
 
-// reset button
+// reset button 
 const reset_button = document.getElementsByClassName("reset")[0];
-reset_button.addEventListener("click", () => { gameOver(); highscore = 0; highscoreEL.innerHTML = "Highscore: " + highscore; })
+reset_button.addEventListener("click", () => { playSound("reset"); gameOver(); highscore = 0; highscoreEL.innerHTML = "Highscore: " + highscore; })

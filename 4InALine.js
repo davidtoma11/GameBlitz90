@@ -16,6 +16,7 @@ const blueImg = document.getElementById("blue_img");
 const boardContainer = document.querySelector(".board");
 const reset_button = document.querySelector(".reset");
 
+
 // board initialization
 function createBoard() {
     boardContainer.innerHTML = "";
@@ -36,6 +37,7 @@ function createBoard() {
                         document.querySelector(`.cell[data-row="${rr}"][data-col="${c}"]`).classList.add("available");
                     }
                 }
+                // playSound("hover");
             });
 
             // remove hover effect when mouse leaves
@@ -46,11 +48,12 @@ function createBoard() {
             });
 
             // click on a collumn -> fill the empty slot (the lowest)
-            cell.addEventListener("click", () => { 
-                handleMove(c); 
+            cell.addEventListener("click", () => {
+                handleMove(c);
                 for (let rr = 0; rr < rows; rr++) {
                     document.querySelector(`.cell[data-row="${rr}"][data-col="${c}"]`).classList.remove("available");
                 }
+                playSound("drop");
             });
 
             boardContainer.appendChild(cell);
@@ -91,7 +94,7 @@ function handleMove(col) {
 
         if (currentRow < targetRow) {
             currentRow++;
-            setTimeout(animateDrop, 30); 
+            setTimeout(animateDrop, 30);
         } else {
             // final point
             board[targetRow][col] = currentPlayer;
@@ -112,8 +115,9 @@ function handleMove(col) {
                     blue_points++;
                     blue_points_EL.textContent = blue_points;
                 }
-
-                setTimeout(() => resetBoard(), 1500);
+                
+                playSound("win");
+                setTimeout(() => resetBoard(), 1000);
                 return;
             }
 
@@ -197,6 +201,7 @@ reset_button.addEventListener("click", () => {
     blue_points = 0;
     orange_points_EL.textContent = orange_points;
     blue_points_EL.textContent = blue_points;
+    playSound("reset");
     resetBoard();
 });
 

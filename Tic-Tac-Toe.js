@@ -16,12 +16,16 @@ const winningCombos = [
     [0, 4, 8], [2, 4, 6]           // diagonal
 ];
 
-
 cells.forEach((cell, index) => {
     cell.addEventListener('click', () => {
 
         if (board[index]) return; // to avoid overwriting
         cell.classList.add('active', currentPlayer); 
+        if(currentPlayer === "X")
+            playSound("x");
+        else
+            playSound("o");
+
         board[index] = currentPlayer; // fill the cell
 
         if (checkWinner(currentPlayer)) {
@@ -75,12 +79,13 @@ function resetTable() {
     currentPlayer = Math.random() < 0.5 ? "X" : "O"; // new first player
     startAnimation(currentPlayer);
 }
-reset_button.addEventListener("click", () => { resetTable(); x_points = 0; o_points = 0; x_points_EL.innerHTML = x_points; o_points_EL.innerHTML = o_points; })
+reset_button.addEventListener("click", () => { playSound("reset"); resetTable(); x_points = 0; o_points = 0; x_points_EL.innerHTML = x_points; o_points_EL.innerHTML = o_points; })
 
 
 
 function drawWinningLine(combo) {
     // from the first cell to the last 
+    playSound("win_line");
     const startCell = cells[combo[0]];
     const endCell = cells[combo[2]];
 
