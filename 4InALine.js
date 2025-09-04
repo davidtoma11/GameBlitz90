@@ -165,6 +165,8 @@ function checkWinner(row, col) {
         rr = row - dr; cc = col - dc;
         while (rr >= 0 && rr < rows && cc >= 0 && cc < cols && board[rr][cc] === player) {
             count++;
+            cells.push([rr,cc]);
+            
             rr -= dr;
             cc -= dc;
         }

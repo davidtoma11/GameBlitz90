@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <title>loading</title>
+    <style>
+        @font-face {
+            font-family: SprinturaDemo;
+            src: url(../fonts/SprinturaDemo.otf);
+        }
+
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #000;
+            overflow: hidden;
+            flex-direction: column;
+        }
+
+        #loading-screen {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+        }
+
+        .disc-container {
+            gap: 1vw; 
+            margin-top: 12vh;
+        }
+
+        .disc {
+            aspect-ratio: 1/1;
+            width: 5vw; 
+            opacity: 0;
+            animation: fall 1s ease forwards;
+            animation-delay: calc(var(--i) * 0.2s);
+        }
+
+        :root {
+            --delay-increment: 0.1s
+        }
+
+        .disc:nth-child(1) { --i: 0; }
+        .disc:nth-child(2) { --i: 1; }
+        .disc:nth-child(3) { --i: 2; }
+        .disc:nth-child(4) { --i: 3; }
+        .disc:nth-child(5) { --i: 4; }
+        .disc:nth-child(6) { --i: 5; }
+        .disc:nth-child(7) { --i: 6; }
+        .disc:nth-child(8) { --i: 7; }
+        .disc:nth-child(9) { --i: 8; }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-150vh);
+                opacity: 0;
+            }
+            60% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        .container {
+            text-align: center;
+            margin-top: 3vh; 
+        }
+
+        .container > * {
+            margin: 0.5vh;
+        }
+
+        h1, h2 {
+            font-family: SprinturaDemo;
+            color: white;
+        }
+
+        h1 { 
+            font-size: 3vw; 
+        }
+
+        h2 { 
+            font-size: 1vw; 
+        }
+
+        .container img {
+            height: 2vh;
+            margin: 1em auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="loading-screen">
+        <div class="disc-container">
+            <img src="../visual_resoruces/SVG/orange_ball.svg" class="disc" id="d1">
+            <img src="../visual_resoruces/SVG/blue_ball.svg" class="disc" id="d2">
+            <img src="../visual_resoruces/SVG/orange_ball.svg" class="disc" id="d3">
+            <img src="../visual_resoruces/SVG/orange_ball.svg" class="disc" id="d4">
+            <img src="../visual_resoruces/SVG/blue_ball.svg" class="disc" id="d5">
+            <img src="../visual_resoruces/SVG/orange_ball.svg" class="disc" id="d6">
+            <img src="../visual_resoruces/SVG/orange_ball.svg" class="disc" id="d7">
+            <img src="../visual_resoruces/SVG/orange_ball.svg" class="disc" id="d8">
+            <img src="../visual_resoruces/SVG/orange_ball.svg" class="disc" id="d9">
+        </div>
+
+        <div class="container">
+            <h1>Loading game..</h1>
+            <h2>Thanks for waiting !</h2>
+            <img src="../visual_resoruces/Logo.png" alt="">
+        </div>
+    </div>
+    
+    <script>
+        const discs = document.querySelectorAll(".disc");
+        const lastDisc = document.getElementById("d9");
+
+        lastDisc.addEventListener("animationend", () => {
+            ["d6", "d7", "d8", "d9"].forEach(id => {
+                const disc = document.getElementById(id);
+                disc.src = "../visual_resoruces/SVG/red_ball.svg";
+            });
+
+            setTimeout(() => {
+                window.location.href = "../4InALine.html";
+            }, 200);
+        });
+    </script>
+</body>
+</html>
