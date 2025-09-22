@@ -8,7 +8,8 @@ const sounds = {
     gameOver: new Audio("sounds/mixkit-arcade-retro-game-over-213.wav"),
     menu: new Audio("sounds/mixkit-page-back-chime-1108.wav"),
     win_line: new Audio("sounds/click-47609.mp3"),
-    x: new Audio("sounds/sound-1-167181.mp3"),
+    x: new Audio("sounds/37-enter-100035.mp3"),
+    info: new Audio("sounds/sound-1-167181.mp3"),
     o: new Audio("sounds/low-button-click-331780.mp3")
 }
 

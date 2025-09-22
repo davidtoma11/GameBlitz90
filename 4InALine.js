@@ -209,3 +209,5 @@ reset_button.addEventListener("click", () => {
 
 // "start game"
 createBoard();
+
+

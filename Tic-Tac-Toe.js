@@ -186,3 +186,6 @@ function startAnimation(currentPlayer, opacity = 0.2, duration = 0.3) {
 
 
 startAnimation(currentPlayer);
+
+
+

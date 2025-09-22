@@ -6,6 +6,7 @@
   <title>4 in a line</title>
   <link rel="stylesheet" href="buttons.css">
   <link rel="stylesheet" href="4InALine.css">
+  <link rel="stylesheet" href="info.css">
 </head>
 
 <body>
@@ -35,6 +36,69 @@
     <div class="base"></div>
   </div>
 
+
+  <div id="overlay">
+    <div id="overlay-content">
+        <h2>Game Guide</h2>
+        <div class="overlay-text">
+            <h3>🎯 What’s the game about?</h3>
+            <p>
+                Four in a Row, also known as Connect 4, is a classic strategy game that’s simple to pick up 
+                but full of exciting challenges. The game is played on a vertical 7x6 grid, where two players 
+                take turns dropping colored discs — one blue and one orange — into columns. 
+            </p>
+            <p>
+                The goal is to be the first to form a line of <b>four discs in a row</b>. 
+                This line can go horizontally, vertically, or diagonally. 
+                Each move matters, and every decision can bring you closer to victory or leave the door open for your opponent.
+            </p>
+
+            <h3>🕹️ How to Play</h3>
+            <p>
+                Players take turns choosing a column and dropping their disc into it. 
+                The disc will occupy the lowest available space in that column. 
+                You cannot place a disc in a full column, so think ahead!
+            </p>
+            <p>
+                Strategy is key: you can try to create your own four-in-a-row while simultaneously blocking your opponent 
+                from completing theirs. Every game feels different depending on how carefully you plan your moves.
+            </p>
+
+            <h3>🏆 Winning the Game</h3>
+            <p>
+                The first player to connect <b>four of their discs in a row</b> wins the game instantly. 
+                It could happen horizontally, vertically, or diagonally, so always be aware of the entire board. 
+                A winning move can come out of nowhere — the thrill is in the surprise!
+            </p>
+            <p>
+                The best players balance offense and defense: while building their own line, they also anticipate 
+                and block the opponent’s potential moves. That tension makes every match exciting and challenging.
+            </p>
+
+            <h3>🤝 What if nobody wins?</h3>
+            <p>
+                If all columns are filled and neither player has four in a row, the game ends in a <b>draw</b>. 
+                Both players tried their best, and the match is perfectly balanced.
+            </p>
+            <p>
+                Draws are fair and friendly. Shake hands, reset the board, and get ready for a new round — 
+                every game is another chance to outsmart your opponent!
+            </p>
+
+            <div class="image-container">
+                <img src="visual_resoruces/4_in_a_line_nf.png" alt="Example of a draw">
+                <img src="visual_resoruces/4 _in_a_line_pic.png" alt="Example of a win">
+            </div>
+
+            <img src="visual_resoruces/Logo.png" alt="" style="margin-top: 4%; width: 15%;">
+        </div>
+
+        <button id="closeOverlay">X</button>
+    </div>
+</div>
+
+    </div>
+
   <div class="buttons">
     <a class="button menu"></a>
     <div class="button info"></div>
@@ -43,6 +107,7 @@
 
   <script src="4InALine.js"></script>
   <script src="sounds.js"></script>
+  <script src="info.js"></script>
 
 </body>
 

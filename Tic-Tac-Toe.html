@@ -7,6 +7,7 @@
     <title>Tic-Tac-Toe</title>
     <link rel="stylesheet" href="buttons.css">
     <link rel="stylesheet" href="Tic-Tac-Toe.css">
+    <link rel="stylesheet" href="info.css">
 </head>
 
 <body>
@@ -38,7 +39,80 @@
         <div class="cell"></div>
     </div>
 
-    <div id="winning-line"></div> 
+    <div id="overlay">
+        <div id="overlay-content">
+            <h2>Game Guide</h2>
+            <div class="overlay-text">
+                <h3>🎯 What’s the game about?</h3>
+                <p>
+                    Tic-Tac-Toe is a timeless classic — simple, yet surprisingly engaging.
+                    The game is played on a 3x3 grid, where two players face off: one takes <b>X</b>
+                    and the other takes <b>O</b>. Each player’s mission is to claim three spots in a row
+                    before their opponent does. The row can be straight across, going down a column,
+                    or even diagonally across the board.
+                </p>
+                <p>
+                    Although the rules are easy to understand, the fun comes from the strategy.
+                    Every move matters, and each round feels like a little duel of wits.
+                    Will you block your opponent in time, or sneak in a clever move to claim victory?
+                </p>
+
+                <h3>🕹️ How to Play</h3>
+                <p>
+                    Players take turns placing their symbol (<b>X</b> or <b>O</b>) in an empty square.
+                    You cannot place your symbol on a square that’s already taken.
+                    Before each match begins, the game randomly decides who goes first.
+                    This keeps things fair and makes every round feel fresh.
+                </p>
+                <p>
+                    As the board fills up, the tension builds. Each decision could lead you closer to
+                    victory — or open the door for your opponent to strike back.
+                    That’s what makes Tic-Tac-Toe quick, competitive, and surprisingly addictive.
+                </p>
+
+                <h3>🏆 Winning the Game</h3>
+                <p>
+                    To win, you need to line up <b>three of your own symbols in a row</b>.
+                    It doesn’t matter if it’s horizontal, vertical, or diagonal —
+                    as soon as you complete a line, the game ends and you are declared the winner.
+                    A victory can happen suddenly, so always keep an eye on the whole board.
+                    Sometimes you’ll be just one move away from winning… and so will your opponent!
+                </p>
+                <p>
+                    The best games are a mix of offense and defense:
+                    trying to create your own winning line while blocking your rival from finishing theirs.
+                    That little back-and-forth is what makes Tic-Tac-Toe exciting,
+                    even though the board is so small.
+                </p>
+
+                <h3>🤝 What if nobody wins?</h3>
+                <p>
+                    Not every round has a winner.
+                    If the board gets completely filled and neither player has managed to make three in a row,
+                    the result is a <b>draw</b>.
+                    It means both players were equally clever and equally stubborn!
+                </p>
+                <p>
+                    A tie keeps the game fair and friendly.
+                    Shake hands, laugh it off, and get ready for the next match —
+                    because every new round is a fresh chance to outsmart your opponent.
+                </p>
+
+    
+                <div class="image-container">
+                    <img src="visual_resoruces/X-0_draw.png" alt="Example of a draw">
+                    <img src="visual_resoruces/X-0 pic WIN.png" alt="Example of a win">
+                </div>
+
+                <img src="visual_resoruces/Logo.png" alt="" style="margin-top: 4%; width: 15%;">
+            </div>
+
+
+            <button id="closeOverlay">X</button>
+        </div>
+    </div>
+
+    <div id="winning-line"></div>
 
 
     <div class="buttons">
@@ -49,6 +123,7 @@
 
     <script src="Tic-Tac-Toe.js"></script>
     <script src="sounds.js"></script>
+    <script src="info.js"></script>
 </body>
 
 </html>
