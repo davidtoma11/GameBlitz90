@@ -6,7 +6,7 @@
     <style>
         @font-face {
             font-family: SprinturaDemo;
-            src: url(../fonts/SprinturaDemo.otf);
+            src: url(../../assets/fonts/SprinturaDemo.otf);
         }
 
         body {
@@ -101,21 +101,21 @@
 <body>
     <div id="loading-screen">
         <div class="disc-container">
-            <img src="../visual_resoruces/SVG/orange_ball.svg" class="disc" id="d1">
-            <img src="../visual_resoruces/SVG/blue_ball.svg" class="disc" id="d2">
-            <img src="../visual_resoruces/SVG/orange_ball.svg" class="disc" id="d3">
-            <img src="../visual_resoruces/SVG/orange_ball.svg" class="disc" id="d4">
-            <img src="../visual_resoruces/SVG/blue_ball.svg" class="disc" id="d5">
-            <img src="../visual_resoruces/SVG/orange_ball.svg" class="disc" id="d6">
-            <img src="../visual_resoruces/SVG/orange_ball.svg" class="disc" id="d7">
-            <img src="../visual_resoruces/SVG/orange_ball.svg" class="disc" id="d8">
-            <img src="../visual_resoruces/SVG/orange_ball.svg" class="disc" id="d9">
+            <img src="../../assets/visual_resoruces/SVG/orange_ball.svg" class="disc" id="d1">
+            <img src="../../assets/visual_resoruces/SVG/blue_ball.svg" class="disc" id="d2">
+            <img src="../../assets/visual_resoruces/SVG/orange_ball.svg" class="disc" id="d3">
+            <img src="../../assets/visual_resoruces/SVG/orange_ball.svg" class="disc" id="d4">
+            <img src="../../assets/visual_resoruces/SVG/blue_ball.svg" class="disc" id="d5">
+            <img src="../../assets/visual_resoruces/SVG/orange_ball.svg" class="disc" id="d6">
+            <img src="../../assets/visual_resoruces/SVG/orange_ball.svg" class="disc" id="d7">
+            <img src="../../assets/visual_resoruces/SVG/orange_ball.svg" class="disc" id="d8">
+            <img src="../../assets/visual_resoruces/SVG/orange_ball.svg" class="disc" id="d9">
         </div>
 
         <div class="container">
             <h1>Loading game..</h1>
             <h2>Thanks for waiting !</h2>
-            <img src="../visual_resoruces/Logo.png" alt="">
+            <img src="../../assets/visual_resoruces/Logo.png" alt="">
         </div>
     </div>
     
@@ -126,11 +126,11 @@
         lastDisc.addEventListener("animationend", () => {
             ["d6", "d7", "d8", "d9"].forEach(id => {
                 const disc = document.getElementById(id);
-                disc.src = "../visual_resoruces/SVG/red_ball.svg";
+                disc.src = "../../assets/visual_resoruces/SVG/red_ball.svg";
             });
 
             setTimeout(() => {
-                window.location.href = "../4InALine.html";
+                window.location.href = "../4InALine/4InALine.html";
             }, 200);
         });
     </script>

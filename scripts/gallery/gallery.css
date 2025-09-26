@@ -1,11 +1,11 @@
 @font-face {
     font-family: SprinturaDemo;
-    src: url(fonts/SprinturaDemo.otf);
+    src: url(../../assets/fonts/SprinturaDemo.otf);
 }
 
 @font-face {
     font-family: BellMT;
-    src: url(fonts/BellMT.ttf);
+    src: url(../../assets/fonts/BellMT.ttf);
 }
 
 @keyframes border-angle-rotate {
@@ -48,9 +48,17 @@
 
 
 @keyframes gradientAnimation {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 @property --border-angle {
@@ -65,32 +73,34 @@
     top: 0;
     left: 0;
     z-index: 0;
-    pointer-events: none; /* să nu blocheze clickurile */
+    pointer-events: none;
+    /* să nu blocheze clickurile */
 }
 
 
-header{
+header {
     display: flex;
 }
 
 
-#brightness_toogle{
+#brightness_toogle {
     filter: brightness(0.5);
     margin-right: 1vw;
     transition: 0.3s ease-in-out;
 }
 
 
-#brightness_toogle:hover, #brightness_toogle.bright{
+#brightness_toogle:hover,
+#brightness_toogle.bright {
     filter: brightness(1);
 }
 
-#brightness_toogle.bright:hover{
-    filter:brightness(1.5);
+#brightness_toogle.bright:hover {
+    filter: brightness(1.5);
 }
 
 body {
-    background-image: url('visual_resoruces/menu_galley_bg.png');
+    background-image: url('../../assets/visual_resoruces/menu_galley_bg.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

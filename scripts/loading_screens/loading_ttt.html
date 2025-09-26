@@ -7,7 +7,7 @@
     <style>
         @font-face {
             font-family: SprinturaDemo;
-            src: url(../fonts/SprinturaDemo.otf);
+            src: url(../../assets/fonts/SprinturaDemo.otf);
         }
 
         body {
@@ -111,14 +111,14 @@
 
 <body>
     <div id="loading-screen">
-        <img src="../visual_resoruces/SVG/X.svg" class="falling-x" id="x1">
-        <img src="../visual_resoruces/SVG/X.svg" class="falling-x" id="x2">
-        <img src="../visual_resoruces/SVG/X.svg" class="falling-x" id="x3">
+        <img src="../../assets/visual_resoruces/SVG/X.svg" class="falling-x" id="x1">
+        <img src="../../assets/visual_resoruces/SVG/X.svg" class="falling-x" id="x2">
+        <img src="../../assets/visual_resoruces/SVG/X.svg" class="falling-x" id="x3">
         <div id="line"></div>
         <div class="container">
             <h1>Loading game..</h1>
             <h2>Thanks for waiting !</h2>
-            <img src="../visual_resoruces/Logo.png" alt="">
+            <img src="../../assets/visual_resoruces/Logo.png" alt="">
         </div>
     </div>
 
@@ -134,7 +134,7 @@
 
         line.addEventListener("transitionend", () => {
             setTimeout(() => {
-                window.location.href = "../Tic-Tac-Toe.html";
+                window.location.href = "../Tic-Tac-Toe/Tic-Tac-Toe.html";
             }, 100);
         }); 
     </script>

@@ -1,11 +1,11 @@
  @font-face {
      font-family: SprinturaDemo;
-     src: url(fonts/SprinturaDemo.otf);
+     src: url(../../assets/fonts/SprinturaDemo.otf);
  }
 
  @font-face {
      font-family: BellMT;
-     src: url(fonts/BellMT.ttf);
+     src: url(../../assets/fonts/BellMT.ttf);
  }
 
  body {
@@ -108,12 +108,12 @@
  }
 
  .cell.active.X {
-     background: url(visual_resoruces/SVG/X.svg) no-repeat center center;
+     background: url(../../assets/visual_resoruces/SVG/X.svg) no-repeat center center;
      background-size: 80%;
  }
 
  .cell.active.O {
-     background: url(visual_resoruces/SVG/0.svg) no-repeat center center;
+     background: url(../../assets/visual_resoruces/SVG/0.svg) no-repeat center center;
      background-size: 80%;
  }
 

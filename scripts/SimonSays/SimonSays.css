@@ -1,11 +1,11 @@
  @font-face {
      font-family: SprinturaDemo;
-     src: url(fonts/SprinturaDemo.otf);
+     src: url(../../assets/fonts/SprinturaDemo.otf);
  }
 
  @font-face {
      font-family: BellMT;
-     src: url(fonts/BellMT.ttf);
+     src: url(../../assets/fonts/BellMT.ttf);
  }
 
  body {

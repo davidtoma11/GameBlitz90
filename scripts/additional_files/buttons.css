@@ -1,0 +1,41 @@
+.buttons {
+    position: absolute;
+    bottom: 3vh;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 5vw;
+    width: clamp(800px,75vw,1400px);
+}
+
+.button {
+    width: 30vw;
+    aspect-ratio: 3.5/1;
+    transition: 0.1s ease-in;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.menu {
+    background-image: url('../../assets/visual_resoruces/SVG/buttons/menu_button_na.svg');
+}
+
+.menu:hover {
+    background-image: url('../../assets/visual_resoruces/SVG/buttons/menu_button_a.svg');
+}
+
+.info {
+    background-image: url('../../assets/visual_resoruces/SVG/buttons/info_button_na.svg');
+}
+
+.info:hover {
+    background-image: url('../../assets/visual_resoruces/SVG/buttons/info_button_a.svg');
+}
+
+.reset {
+    background-image: url('../../assets/visual_resoruces/SVG/buttons/reset_button_na.svg');
+}
+
+.reset:hover {
+    background-image: url('../../assets/visual_resoruces/SVG/buttons/reset_button_a.svg');
+}

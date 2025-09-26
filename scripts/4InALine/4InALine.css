@@ -1,11 +1,11 @@
 @font-face {
     font-family: SprinturaDemo;
-    src: url(fonts/SprinturaDemo.otf);
+    src: url(../../assets/fonts/SprinturaDemo.otf);
 }
 
 @font-face {
     font-family: BellMT;
-    src: url(fonts/BellMT.ttf);
+    src: url(../../assets/fonts/BellMT.ttf);
 }
 
 body {
@@ -123,16 +123,16 @@ p {
 }
 
 .cell.red {
-    background: url(visual_resoruces/SVG/red_ball.svg);
+    background: url(../../assets/visual_resoruces/SVG/red_ball.svg);
     transition: 0.3s;
 }
 
 .cell.orange {
-    background: url(visual_resoruces/SVG/orange_ball.svg);
+    background: url(../../assets/visual_resoruces/SVG/orange_ball.svg);
 }
 
 .cell.blue {
-    background: url(visual_resoruces/SVG/blue_ball.svg);
+    background: url(../../assets/visual_resoruces/SVG/blue_ball.svg);
 }
 
 .cell.available {
