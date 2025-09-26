@@ -10,7 +10,8 @@ const sounds = {
     win_line: new Audio("sounds/click-47609.mp3"),
     x: new Audio("sounds/37-enter-100035.mp3"),
     info: new Audio("sounds/sound-1-167181.mp3"),
-    o: new Audio("sounds/low-button-click-331780.mp3")
+    o: new Audio("sounds/low-button-click-331780.mp3"),
+    light_switch: new Audio("sounds/light-switch-81967.mp3")
 }
 
 

@@ -24,7 +24,7 @@ cells.forEach((cell, index) => {
         if(currentPlayer === "X")
             playSound("x");
         else
-            playSound("o");
+            playSound("x");
 
         board[index] = currentPlayer; // fill the cell
 
