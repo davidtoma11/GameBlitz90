@@ -11,7 +11,7 @@ function generateLines(container, count, align) {
         // random size
         const length = (Math.random() * (10 - 5) + 5).toFixed(1);
         line.style.width = length + "vw";
-
+        line.style.height = 4 + "px";
         // random color
         line.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
 
@@ -21,8 +21,8 @@ function generateLines(container, count, align) {
     }
 }
 
-generateLines(left, 36, "flex-start");
-generateLines(right, 36, "flex-end");
+generateLines(left, 31, "flex-start");
+generateLines(right, 31, "flex-end");
 
 // light transition effect
 const lines = document.querySelectorAll(".line");

@@ -16,8 +16,8 @@
  }
 
  :root {
-     --line: 15px;
-     --size: 240px;
+     --line: 10px;
+     --size: 200px;
  }
 
 
@@ -52,11 +52,11 @@
      color: white;
      margin: 0;
      white-space: nowrap;
-     font-size: 70px;
+     font-size: 60px;
  }
 
  p {
-     font-size: 50px;
+     font-size: 40px;
  }
 
 
@@ -133,11 +133,11 @@
  #winning-line {
      position: absolute;
      background-color: red;
-     border-radius: 20px;
-     height: 2vw;
+     border-radius: 10px;
+     height: 1vw;
      z-index: 10;
      opacity: 0;
-     box-shadow: inset 0 0 15px black;
+     box-shadow: inset 0 0 10px black;
      width: 0;
      transform-origin: left center;
      transition: width ease;

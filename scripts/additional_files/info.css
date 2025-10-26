@@ -27,7 +27,7 @@
     -webkit-backdrop-filter: blur(7.7px);
     padding: 20px;
     width: 90%;
-    max-width: 800px;
+    max-width: 700px;
     max-height: 80%;
     overflow-y: auto;
     overflow-x: hidden;  
@@ -49,7 +49,7 @@
 }
 
 #overlay-content h3 {
-    font-size: 40px;
+    font-size: 30px;
     color: white;
     font-family: BellMT;
     margin-bottom: 5px;
@@ -59,7 +59,7 @@
 #overlay-content p {
     color: white;
     font-family: BellMT;
-    font-size: 25px;
+    font-size: 20px;
     margin-bottom: 10px;
     line-height: 1.4;
      word-wrap: break-word;
