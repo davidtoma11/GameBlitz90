@@ -16,8 +16,8 @@
  }
 
  :root {
-     --line: 10px;
-     --size: 200px;
+     --line: 1vw;
+     --size: 14vw;
  }
 
 
@@ -147,6 +147,21 @@
      opacity: 1;
  }
 
+
+ @media screen and (max-width: 600px) {
+    :root{
+        --size:30vw
+    }
+
+    #winning-line{
+        height: 2vw;
+    }
+
+    h1{
+        font-size: 50px;
+    }
+   
+ }
 
 
 

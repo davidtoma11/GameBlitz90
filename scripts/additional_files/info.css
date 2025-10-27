@@ -30,7 +30,7 @@
     max-width: 700px;
     max-height: 80%;
     overflow-y: auto;
-    overflow-x: hidden;  
+    overflow-x: hidden;
     text-align: center;
     position: relative;
     transform: scale(0.95);
@@ -44,12 +44,12 @@
 #overlay-content h2 {
     margin-top: 10px;
     font-family: Sprintura Demo;
-    font-size: 50px;
+    font-size: clamp(30px, 6vw, 50px);
     color: white;
 }
 
 #overlay-content h3 {
-    font-size: 30px;
+    font-size: clamp(22px, 5vw, 30px);
     color: white;
     font-family: BellMT;
     margin-bottom: 5px;
@@ -59,10 +59,10 @@
 #overlay-content p {
     color: white;
     font-family: BellMT;
-    font-size: 20px;
+    font-size: clamp(16px, 4.5vw, 20px);
     margin-bottom: 10px;
     line-height: 1.4;
-     word-wrap: break-word;
+    word-wrap: break-word;
     white-space: normal;
 }
 
@@ -83,6 +83,7 @@
     width: 35px;
     height: 35px;
     font-size: 20px;
+    cursor: pointer;
 }
 
 .image-container {
@@ -108,4 +109,42 @@
 
 #overlay-content::-webkit-scrollbar-thumb:hover {
     background: rgba(255, 255, 255, 0.6);
+}
+
+@media screen and (max-width: 600px) {
+    .image-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    #overlay-content img {
+        width: 80%;
+    }
+    
+    #overlay-content {
+        width: 85%;
+        padding: 10px;
+        padding-top: 25px;
+    }
+
+    #closeOverlay {
+        width: 30px;
+        height: 30px;
+        font-size: 16px;
+        top: 8px;
+        right: 8px;
+    }
+    
+    #overlay-content h2 {
+        font-size: clamp(24px, 5.5vw, 30px);
+    }
+
+    #overlay-content h3 {
+        font-size: clamp(18px, 4.5vw, 22px);
+    }
+
+    #overlay-content p {
+        font-size: clamp(14px, 4vw, 16px);
+    }
 }

@@ -8,6 +8,8 @@
     src: url(../../assets/fonts/BellMT.ttf);
 }
 
+
+
 body {
     display: flex;
     justify-content: center;
@@ -15,6 +17,7 @@ body {
     height: 100vh;
     background: black;
     background-size: cover;
+    margin: 0;
 }
 
 header {
@@ -25,6 +28,9 @@ header {
     text-align: center;
     z-index: 1;
     padding-top: 1vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 #ds {
@@ -39,10 +45,10 @@ header {
 }
 
 .score img {
-    height: 3vh;
+    height: clamp(20px, 3vh, 30px);
 }
 
-.score img.active-turn{
+.score img.active-turn {
     transform: scale(1.2);
     filter: brightness(1.3);
     transition: ease-in 0.3s;
@@ -54,11 +60,11 @@ p {
     color: white;
     margin: 0;
     white-space: nowrap;
-    font-size: 60px;
+    font-size: clamp(32px, 5vw, 60px);
 }
 
 p {
-    font-size: 40px;
+    font-size: clamp(24px, 4vw, 40px);
 }
 
 .container {
@@ -66,13 +72,13 @@ p {
     flex-direction: column;
     align-items: center;
     height: 66vh;
-    width: clamp(300px,80vw, 900px);
+    width: clamp(300px, 80vw, 900px);
 }
 
 #main {
     display: flex;
     gap: 1px;
-    height:92%;
+    height: 92%;
     width: 90%;
 }
 
@@ -137,4 +143,91 @@ p {
 
 .cell.available {
     background: white;
+}
+
+/* === REGULI RESPONSIVE === */
+
+@media screen and (max-width: 1200px) {
+    .container {
+        margin-top: 3vh;
+        height: 68vh;
+        width: clamp(300px, 75vw, 900px);
+    }
+}
+
+@media screen and (max-width: 600px) {
+    body {
+        display: block;
+        min-height: 100vh;
+        height: auto;
+        padding: 2vh 0 100px 0; 
+    }
+
+    header {
+        position: static; 
+        transform: none;
+    }
+
+    h1 {
+        white-space: normal; 
+    }
+
+    .container {
+        padding-top: 11vh;
+        width: 95vw; 
+        height: auto;
+        max-height: 550px;
+        margin: 20px auto 0 auto; 
+    }
+
+    #main {
+        height: auto;
+        aspect-ratio: 7 / 8; 
+    }
+
+    .board {
+        /* MODIFICAT: Anulăm margin-top din stilul de bază */
+        margin-top: 0; 
+        /* MODIFICAT: Facem tabla și mai scurtă pentru a expune stâlpii */
+        max-height: 90%; 
+        
+    }
+
+    .base {
+        height: 8vw; 
+        min-height: 25px;
+    }
+
+    .score {
+        padding-top: 5px;
+    }
+}
+
+@media (max-height: 550px) and (min-width: 601px) {
+    body {
+        padding: 0 10px; 
+    }
+
+    header {
+        top: 5px;
+        padding-top: 0;
+        width: 100%; 
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+
+    p {
+        font-size: 22px;
+    }
+
+    .score img {
+        height: 18px;
+    }
+
+    .container {
+        height: 75vh; 
+        margin-top: 50px; 
+    }
 }

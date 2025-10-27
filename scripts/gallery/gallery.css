@@ -12,26 +12,22 @@
     from {
         --border-angle: 0deg;
     }
-
     to {
         --border-angle: 360deg;
     }
 }
 
 @keyframes blinkTwiceWithPause {
-
     0%,
     30%,
     60%,
     100% {
         filter: brightness(0.5);
     }
-
     15%,
     45% {
         filter: brightness(1);
     }
-
 }
 
 @keyframes slideUpFadeIn {
@@ -39,23 +35,19 @@
         opacity: 20%;
         transform: translateY(30px);
     }
-
     to {
         opacity: 1;
         transform: translateY(0);
     }
 }
 
-
 @keyframes gradientAnimation {
     0% {
         background-position: 0% 50%;
     }
-
     50% {
         background-position: 100% 50%;
     }
-
     100% {
         background-position: 0% 50%;
     }
@@ -67,23 +59,47 @@
     inherits: false;
 }
 
-
 #carousel {
     display: none;
 }
-
 
 header {
     display: flex;
 }
 
+.nav-btn {
+    display: none;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    color: white;
+    font-size: 2.5rem;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    transition: 0.2s ease;
+}
+
+.nav-btn:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+#prev-btn {
+    left: 2vw;
+}
+
+#next-btn {
+    right: 2vw;
+}
 
 #brightness_toogle {
     filter: brightness(0.5);
     margin-right: 1vw;
     transition: 0.3s ease-in-out;
 }
-
 
 #brightness_toogle:hover,
 #brightness_toogle.bright {
@@ -111,7 +127,6 @@ body {
     align-items: center;
     filter: brightness(0.5);
 }
-
 
 #logo.bright {
     filter: brightness(1);
@@ -165,17 +180,19 @@ body {
     filter: brightness(1);
 }
 
-.box:hover {
-    filter: brightness(1.2);
-    --border-angle: 0deg;
-    border: 10px solid transparent;
-    position: relative;
-    animation: border-angle-rotate 1.5s infinite linear;
-    background: linear-gradient(black, black) padding-box,
-        conic-gradient(from var(--border-angle),
-            rgb(0, 0, 0) 25%,
-            rgb(255, 255, 255) 50%,
-            white) border-box;
+@media (min-width: 1201px) {
+    .box:hover {
+        filter: brightness(1.2);
+        --border-angle: 0deg;
+        border: 10px solid transparent;
+        position: relative;
+        animation: border-angle-rotate 1.5s infinite linear;
+        background: linear-gradient(black, black) padding-box,
+            conic-gradient(from var(--border-angle),
+                rgb(0, 0, 0) 25%,
+                rgb(255, 255, 255) 50%,
+                white) border-box;
+    }
 }
 
 .box img {
@@ -188,7 +205,7 @@ body {
     color: white;
     font-family: SprinturaDemo;
     display: inline-block;
-    font-size: clamp(40px, 2vw, 48px);
+    font-size: clamp(37px, 2vw, 45px);
     border-bottom: 4px solid white;
     margin: 3px auto;
     white-space: nowrap;
@@ -203,101 +220,146 @@ body {
     color: white;
     font-family: BellMT;
     text-align: center;
-    font-size: clamp(25px, 1.3vw, 30px);
-
+    font-size: clamp(23px, 1.3vw, 28px);
 }
 
 @media screen and (max-width: 1200px) {
-    #boxes {
-        display: none;
+    body {
+        min-height: 100vh;
+        height: auto;
     }
 
     #brightness_toogle {
         display: none;
     }
 
-    #carousel {
+    #logo {
+        filter: brightness(0.8);
+    }
+
+    #boxes {
         position: relative;
         width: 100%;
-        height: 80vh;
+        height: clamp(550px, 80vh, 800px);
         display: flex;
         justify-content: center;
         align-items: center;
-        margin-top: 10vh;
+        margin-top: 3vh;
+        margin-bottom: 4vh;
+        animation: none;
+        padding: 0;
+        gap: 0;
+        overflow: hidden;
+    }
+
+    .custom-nav {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 6px;
+        position: absolute;
+        bottom: 3vh;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 10;
+    }
+
+    .nav-part {
+        height: clamp(12px, 2.5vh, 20px);
+        background-color: #4b4b4b;
+        border: solid 2px rgb(247, 247, 247);
+        opacity: 1;
+        transition: 0.1s ease;
+    }
+
+    #nav-prev-area {
+        width: 70px;
+        border-radius: 15px 0 0 15px;
+    }
+
+    #nav-middle-area {
+        width: 15vw;
+    }
+
+    #nav-next-area {
+        width: 70px;
+        border-radius: 0 15px 15px 0;
+    }
+
+    .nav-part:hover {
+        background-color: #f2f2f2;
+        opacity: 1;
     }
 
     .box {
         position: absolute;
-        width: min(70%, 400px);
-        transition: transform 0.5s ease, opacity 0.5s ease;
-        opacity: 0.5;
+        height: clamp(450px, 60vh, 600px);
+        opacity: 0.4;
     }
 
+    
     .box.active {
         transform: translateX(0) translateY(0) scale(1);
         opacity: 1;
         z-index: 3;
+        filter: brightness(1);
+        --border-angle: 0deg;
+        border: 10px solid transparent;
+        position: absolute;
+        animation: border-angle-rotate 1.5s infinite linear;
+        background: linear-gradient(black, black) padding-box,
+            conic-gradient(from var(--border-angle),
+                rgb(0, 0, 0) 25%,
+                rgb(255, 255, 255) 50%,
+                white) border-box;
+        height: clamp(450px, 60vh, 600px);
+    }
+
+    .box.active:hover {
+        filter: brightness(1.2);
+        animation: border-angle-rotate 0.75s infinite linear;
     }
 
     .box.left {
-        transform: translateX(calc(-50% - 100px)) translateY(-15%) scale(0.8);
+        transform: translateX(calc(-50% - 5vw)) translateY(-20%) scale(0.7);
         z-index: 2;
     }
 
     .box.right {
-        transform: translateX(calc(50% + 100px)) translateY(-15%) scale(0.8);
+        transform: translateX(calc(50% + 5vw)) translateY(-20%) scale(0.7);
         z-index: 2;
     }
-}
-
-@media screen and (max-width: 900px) {
-    .box.left {
-        transform: translateX(calc(-40% - 50px)) translateY(-10%) scale(0.7);
-    }
-    
-    .box.right {
-        transform: translateX(calc(40% + 50px)) translateY(-10%) scale(0.7);
-    }
-
-    #logo {
-        width: 500px;
-    }
-
 }
 
 @media screen and (max-width: 600px) {
-    .box.left {
-        transform: translateX(calc(-30% - 20px)) translateY(25%) scale(0.6);
-    }
-    
-    .box.right {
-        transform: translateX(calc(30% + 20px)) translateY(25%) scale(0.6);
-    }
-}
-
-@media screen and (max-width: 50px){
-    body {
-        background: rgb(205, 191, 191);
-    }
-
-    .box.active {
-        transform: scale(0.8);
-    }
-    
-    #carousel{
+    #boxes {
         margin-top: 5vh;
-   
     }
 
-    #logo {
-        width: 400px;
+
+
+    .box,
+    .box.active {
+        height: clamp(420px, 55vh, 500px);
     }
 
     .box.left {
-        transform: translateX(calc(-28%)) translateY(-25%) scale(0.45)
+        transform: translateX(calc(-50% + 20px)) translateY(-40%) scale(0.6);
     }
 
-    .box.right{
-        transform: translateX(calc(28%)) translateY(-25%) scale(0.45)
+    .box.right {
+        transform: translateX(calc(50% - 20px)) translateY(-40%) scale(0.6);
+    }
+
+    #prev-btn {
+        left: 10%;
+    }
+
+    #next-btn {
+        right: 10%;
+    }
+
+    #nav-middle-area {
+        width: 25vw;
     }
 }
