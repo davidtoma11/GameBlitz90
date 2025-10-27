@@ -6,6 +6,7 @@ logo.addEventListener('dblclick', () => {
 });
 
 light_button.addEventListener('click', () => {
+    // Toggle 'bright' class on all boxes, logo, and the button itself
     document.querySelectorAll(".box").forEach(el => {
         el.classList.toggle("bright");
     });
@@ -15,27 +16,26 @@ light_button.addEventListener('click', () => {
 });
 
 
-// Verifică dacă suntem pe un ecran mai mic de 1200px
+// Check for screens smaller than 1200px
 const mediaQuery = window.matchMedia('(max-width: 1200px)');
 
-// Funcția care pornește logica caruselului
+// Main function to initialize the carousel
 function setupCarousel() {
-    // Dacă nu suntem pe mobil, nu face nimic
+    // If not on mobile/tablet, reset classes and exit
     if (!mediaQuery.matches) {
-        // Asigură-te că toate box-urile sunt vizibile pe desktop
         document.querySelectorAll('#boxes .box').forEach(box => {
             box.classList.remove('active', 'left', 'right');
         });
         return;
     }
 
-    // Selectează elementele caruselului
+    // Select carousel elements
     const gallery = document.getElementById('boxes');
     const boxes = gallery.querySelectorAll('.box');
     const prevNavArea = document.getElementById('nav-prev-area');
     const nextNavArea = document.getElementById('nav-next-area');
 
-    // Adăugăm o verificare, în caz că elementele nu există (de ex. pe desktop)
+    // Attach click events to nav areas (if they exist)
     if (prevNavArea) {
         prevNavArea.onclick = showPrev;
     }
@@ -43,23 +43,22 @@ function setupCarousel() {
         nextNavArea.onclick = showNext;
     }
 
-    let currentIndex = 1; // Începem cu elementul din mijloc (index 1)
+    let currentIndex = 1; // Start with the middle element
     const totalBoxes = boxes.length;
 
-    if (totalBoxes === 0) return; // Nu face nimic dacă nu există jocuri
+    if (totalBoxes === 0) return; // Do nothing if there are no boxes
 
-    // Funcția principală care actualizează clasele
+    // Applies .active, .left, and .right classes to boxes
     function updateCarousel() {
         boxes.forEach((box, index) => {
-            // Calculează indicii pentru stânga și dreapta
-            // Folosim (index + totalBoxes) pentru a evita numere negative
+            // Use modulo to calculate indices and wrap around
             const leftIndex = (currentIndex - 1 + totalBoxes) % totalBoxes;
             const rightIndex = (currentIndex + 1) % totalBoxes;
 
-            // Curăță clasele vechi
+            // Clear old classes
             box.classList.remove('active', 'left', 'right');
 
-            // Adaugă clasele noi
+            // Add new classes
             if (index === currentIndex) {
                 box.classList.add('active');
             } else if (index === leftIndex) {
@@ -68,10 +67,9 @@ function setupCarousel() {
                 box.classList.add('right');
             }
         });
-
     }
 
-    // --- Definirea funcțiilor de navigare ---
+    // --- Navigation Functions ---
     function showNext() {
         currentIndex = (currentIndex + 1) % totalBoxes;
         updateCarousel();
@@ -82,33 +80,30 @@ function setupCarousel() {
         updateCarousel();
     }
 
-    // --- Adăugarea evenimentelor ---
+    // --- Event Listeners ---
 
-
-    // 2. Evenimente de click pe cardurile laterale
+    // 1. Click on side cards to navigate
     boxes.forEach(box => {
         box.addEventListener('click', (e) => {
-            // Dacă dăm click pe un card lateral, oprește link-ul
-            // și navighează la el
             if (box.classList.contains('left')) {
-                e.preventDefault(); // Oprește navigarea paginii
+                e.preventDefault(); // Stop link navigation
                 showPrev();
             } else if (box.classList.contains('right')) {
-                e.preventDefault(); // Oprește navigarea paginii
+                e.preventDefault(); // Stop link navigation
                 showNext();
             }
-            // Dacă e 'active', link-ul funcționează normal
+            // If 'active', the <a> link works normally
         });
     });
 
-    // 3. Logică pentru Swipe (glisare)
+    // 2. Swipe logic
     let touchStartX = 0;
     let touchEndX = 0;
-    const swipeThreshold = 50; // Distanța minimă (în px) pentru un swipe valid
+    const swipeThreshold = 50; // Minimum pixels for a valid swipe
 
     gallery.addEventListener('touchstart', (e) => {
         touchStartX = e.changedTouches[0].screenX;
-    }, { passive: true }); // {passive: true} pentru performanță
+    }, { passive: true });
 
     gallery.addEventListener('touchend', (e) => {
         touchEndX = e.changedTouches[0].screenX;
@@ -119,23 +114,21 @@ function setupCarousel() {
         const swipeDistance = touchEndX - touchStartX;
 
         if (swipeDistance > swipeThreshold) {
-            // Swipe spre Dreapta (degetul s-a mișcat spre dreapta)
+            // Swiped right
             showPrev();
         } else if (swipeDistance < -swipeThreshold) {
-            // Swipe spre Stânga (degetul s-a mișcat spre stânga)
+            // Swiped left
             showNext();
         }
     }
 
-    // --- Inițializarea ---
-    // Setează starea inițială a caruselului
-    updateCarousel();
-
-    gallery.classList.add('carousel-ready')
+    // --- Initialization ---
+    updateCarousel(); // Set initial state
+    gallery.classList.add('carousel-ready'); // Enable transitions
 }
 
-// Pornește caruselul la încărcarea paginii
+// Run on page load
 setupCarousel();
 
-// Repornește/Oprește caruselul dacă utilizatorul redimensionează fereastra
+// Re-run if the window is resized (e.g., orientation change)
 mediaQuery.addEventListener('change', setupCarousel);

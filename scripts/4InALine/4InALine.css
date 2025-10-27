@@ -145,8 +145,6 @@ p {
     background: white;
 }
 
-/* === REGULI RESPONSIVE === */
-
 @media screen and (max-width: 1200px) {
     .container {
         margin-top: 3vh;
