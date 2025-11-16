@@ -112,12 +112,12 @@ GameBlitz90/
 │   ├── visual_resources/         # Custom graphics and branding
 │   ├── fonts/                    # Typography assets
 │   ├── sounds/                   # Audio effects
-│   └── loading_screens/          # Game-specific loaders
 ├── scripts/                      # (+ styles)
 │   ├── Tic-Tac-Toe/             
 │   ├── 4InALine/                
 │   ├── SimonSays/                
-│   └── gallery/                  # Main hub
+│   ├── gallery/                  # Main hub
+│   └── loading_screens/          # Game-specific loaders
 └── index.html                    # Main entry point                                   
 ```
 
